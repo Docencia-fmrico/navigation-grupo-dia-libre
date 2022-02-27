@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef BT_BEHAVIOR__PATROL_HPP_
-#define BT_BEHAVIOR__PATROL_HPP_
+#ifndef BT_BEHAVIOR__ISRACEFINISHED_HPP_
+#define BT_BEHAVIOR__ISRACEFINISHED_HPP_
+
 
 #include <string>
 
@@ -27,10 +28,10 @@
 namespace bt_behavior
 {
 
-class Patrol : public BT::ActionNodeBase
+class IsRaceFinished : public BT::ActionNodeBase
 {
 public:
-  explicit Patrol(
+  explicit IsRaceFinished(
     const std::string & xml_tag_name,
     const BT::NodeConfiguration & conf);
 
@@ -39,15 +40,15 @@ public:
 
   static BT::PortsList providedPorts()
   {
-    return BT::PortsList({});
+    return {
+      BT::InputPort<float[2], 2>("current_wp")
+    };
   }
 
 private:
   rclcpp::Node::SharedPtr node_;
-  rclcpp::Time start_time_;
-  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr vel_pub_;
 };
 
 }  // namespace bt_behavior
 
-#endif  // BT_BEHAVIOR__PATROL_HPP_
+#endif  // BT_BEHAVIOR__ISRACEFINISHED_HPP_
