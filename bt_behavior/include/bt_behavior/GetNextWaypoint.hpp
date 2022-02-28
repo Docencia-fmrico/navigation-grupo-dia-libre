@@ -21,6 +21,7 @@
 #include "behaviortree_cpp_v3/bt_factory.h"
 
 #include "geometry_msgs/msg/twist.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -40,7 +41,7 @@ public:
   static BT::PortsList providedPorts()
   {
     return {
-      BT::OutputPort<float[2], 2>("waypoint")
+      BT::OutputPort<geometry_msgs::msg::PoseStamped>("waypoint")
     };
   }
 

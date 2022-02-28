@@ -22,6 +22,8 @@
 #include "behaviortree_cpp_v3/bt_factory.h"
 
 #include "geometry_msgs/msg/twist.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
+
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -41,7 +43,7 @@ public:
   static BT::PortsList providedPorts()
   {
     return {
-      BT::InputPort<float[2], 2>("current_wp")
+      BT::InputPort<geometry_msgs::msg::PoseStamped>("current_wp")
     };
   }
 

@@ -15,7 +15,7 @@
 #include <string>
 #include <iostream>
 
-#include "bt_behavior/Patrol.hpp"
+#include "bt_behavior/IsRaceFinished.hpp"
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 
