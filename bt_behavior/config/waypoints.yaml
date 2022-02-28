@@ -1,4 +1,4 @@
-patrolling_node:
+nav_wp:
   ros__parameters:
     waypoints: ["wp1", "wp2"]
     wp1: [1.0, 1.0]

@@ -49,7 +49,7 @@ IsRaceFinished::tick()
   //si si success
   //si no failure
   //si, hay que leer de nuevo de la lista de parametros, y si, sigo sin saber como se hace
-  int wp;
+  std::vector<double> wp;
   getInput("current_wp", wp);
 }
 
