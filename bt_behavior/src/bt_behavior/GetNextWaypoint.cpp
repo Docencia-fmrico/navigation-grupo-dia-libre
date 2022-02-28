@@ -15,7 +15,7 @@
 #include <string>
 #include <iostream>
 
-#include "bt_behavior/Patrol.hpp"
+#include "bt_behavior/GetNextWaypoint.hpp"
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 
@@ -46,15 +46,19 @@ BT::NodeStatus
 GetNextWaypoint::tick()
 {
   int ind;
-  config().blackboard->get("index", *ind);
+  config().blackboard->get("index", ind);
+  /*
   rclcpp::Parameter wp_array = this->get_parameter("waypoint");
   std::vector<std::string> wp_vector = wp_array.as_string_array();
-  rclcpp::Parameter wp_param = this->get_parameter(wp_vector[ind]);
+  //rclcpp::Parameter wp_param = this->get_parameter(wp_vector[ind]);
   std::vector<double> wp = wp_param.as_double_array(); 
+
   //aqui hay que leer del yaml pero no tengo ni idea de como se hace
   //hay que leer y quedarte con el wp[ind] para establecerlo como output
   //y lo que hay escrito es que pasamos publicamos en la blackboard el indx+1 para en la siguiente ir al siguiente punto
+  
   ind++;
+  */
   config().blackboard->set("index", ind);
 
   return BT::NodeStatus::SUCCESS;
