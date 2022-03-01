@@ -45,12 +45,17 @@ IsRaceFinished::halt()
 BT::NodeStatus
 IsRaceFinished::tick()
 {
-  //comprobar si wp == wp[last_position]
-  //si si success
-  //si no failure
-  //si, hay que leer de nuevo de la lista de parametros, y si, sigo sin saber como se hace
-  std::vector<double> wp;
-  getInput("current_wp", wp);
+
+  int ind;
+  config().blackboard->get("index", ind);
+
+  std::vector<std::string> wp_ids;
+  node_->get_parameter("waypoints", wp_ids);
+
+  if (ind == wp_ids.size()) {
+    return BT::NodeStatus::SUCCESS;
+  }
+  return BT::NodeStatus::FAILURE;
 }
 
 }  // namespace bt_behavior

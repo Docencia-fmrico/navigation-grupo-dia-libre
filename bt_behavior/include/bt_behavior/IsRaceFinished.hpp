@@ -23,6 +23,8 @@
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
+#include <vector>
+
 
 
 #include "rclcpp/rclcpp.hpp"
@@ -42,9 +44,7 @@ public:
 
   static BT::PortsList providedPorts()
   {
-    return {
-      BT::InputPort<geometry_msgs::msg::PoseStamped>("current_wp")
-    };
+    return {};
   }
 
 private:
