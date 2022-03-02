@@ -33,6 +33,16 @@ int main(int argc, char * argv[])
   auto node = rclcpp::Node::make_shared("nav_wp");
   int index = 0;
 
+  node->declare_parameter<std::vector<std::string>>("waypoints", {});
+  std::vector<std::string> wp_ids;
+  node->get_parameter("waypoints", wp_ids);
+
+  for (const auto & wp_id : wp_ids) {
+    node->declare_parameter<std::vector<double>>(wp_id, {});
+    std::vector<double> wp_coords;
+    node->get_parameter(wp_id, wp_coords);
+  }
+
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
@@ -62,7 +72,6 @@ int main(int argc, char * argv[])
     rclcpp::spin_some(node);
     rate.sleep();
   }
-  
 
   rclcpp::shutdown();
   return 0;
@@ -82,3 +91,4 @@ Move devuelve running entonces Squence le hara tick otra vez hasts que falle o t
 De move pasa a si hemos acabado, devulve failure, entonces el sequence hara restart y empezaremos desde GetNextWaypoint de nuevo
 si devuleve success, al ser el ultimo hijo del sequence, devilvera al arbol success y habremos acabado, nunca devuelve running*/
 
+// ros2 run pkg node --ros-args --params-file ruta absoluta

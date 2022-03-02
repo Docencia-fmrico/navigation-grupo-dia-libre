@@ -22,6 +22,7 @@
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
+#include <vector>
 
 #include "rclcpp/rclcpp.hpp"
 
