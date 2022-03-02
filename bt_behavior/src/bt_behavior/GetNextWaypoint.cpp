@@ -57,6 +57,7 @@ GetNextWaypoint::tick()
   publishable_wp.pose.position.x = waypoint[0];
   publishable_wp.pose.position.y = waypoint[1];
 
+  std::cerr << "Next waypoint on index " << ind << " is [" << waypoint[0] << "," << waypoint[1] << "]" << std::endl;
   ind++;
   config().blackboard->set("index", ind);
   setOutput("waypoint", publishable_wp);

@@ -52,6 +52,8 @@ IsRaceFinished::tick()
   std::vector<std::string> wp_ids;
   node_->get_parameter("waypoints", wp_ids);
 
+  std::cout << "Index:" << ind << " ,WP size: " << wp_ids.size() << std::endl;
+
   if (ind == wp_ids.size()) {
     return BT::NodeStatus::SUCCESS;
   }

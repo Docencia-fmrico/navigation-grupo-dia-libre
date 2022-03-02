@@ -25,7 +25,7 @@ controller_server:
       stateful: True
     FollowPath:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
-      desired_linear_vel: 0.5
+      desired_linear_vel: 0.4
       max_linear_accel: 2.5
       max_linear_decel: 2.5
       lookahead_dist: 0.6
@@ -47,8 +47,16 @@ controller_server:
       max_angular_accel: 3.2
       cost_scaling_dist: 0.3
       cost_scaling_gain: 1.0
-      inflation_cost_scaling_factor: 
+      inflation_cost_scaling_factor: 3.0
       
+  
+ADVANTAGES:
+
+  FAST NAVIGATION
+  GOOD REACTIVITY
+
+DISADVANTAGES:
+  SLOW PROCESSING
 ------------------------------------------------------------------------------
 
 
