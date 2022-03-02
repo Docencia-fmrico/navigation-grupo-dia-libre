@@ -1,11 +1,12 @@
+
 <?xml version="1.0"?>
 <root main_tree_to_execute="BehaviorTree">
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
         <Sequence>
-            <Action ID="GetNextWaypoint" waypoint="{next_wp}"/>
+            <Action ID="GetNextWaypoint" waypoint="{waypoint}"/>
             <Action ID="Move" goal="{waypoint}"/>
-            <Action ID="IsRaceFinished" current_wp="{waypoint}"/>
+            <Action ID="IsRaceFinished"/>
         </Sequence>
     </BehaviorTree>
     <!-- ////////// -->
@@ -17,8 +18,6 @@
             <input_port name="goal"/>
         </Action>
         <Action ID="IsRaceFinished"/>
-            <input_port name="current_wp"/>
     </TreeNodesModel>
     <!-- ////////// -->
 </root>
-
