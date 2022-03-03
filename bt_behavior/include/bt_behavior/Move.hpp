@@ -27,6 +27,16 @@
 namespace bt_behavior
 {
 
+  enum sounds {
+    ON            = 0,
+    OFF           = 1,
+    RECHARGE      = 2,
+    BUTTON        = 3,
+    ERROR         = 4,
+    CLEANINGSTART = 5,
+    CLEANINGEND   = 6
+  };
+
 class Move : public bt_behavior::BtActionNode<nav2_msgs::action::NavigateToPose>
 {
 public:
@@ -37,6 +47,8 @@ public:
 
   void on_tick() override;
   BT::NodeStatus on_success() override;
+  BT::NodeStatus on_aborted() override;
+  BT::NodeStatus on_cancelled() override;
 
   static BT::PortsList providedPorts()
   {

@@ -33,6 +33,16 @@ int main(int argc, char * argv[])
   auto node = rclcpp::Node::make_shared("nav_wp");
   int index = 0;
 
+  node->declare_parameter<std::vector<std::string>>("waypoints", {});
+  std::vector<std::string> wp_ids;
+  node->get_parameter("waypoints", wp_ids);
+
+  for (const auto & wp_id : wp_ids) {
+    node->declare_parameter<std::vector<double>>(wp_id, {});
+    std::vector<double> wp_coords;
+    node->get_parameter(wp_id, wp_coords);
+  }
+
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
@@ -62,23 +72,9 @@ int main(int argc, char * argv[])
     rclcpp::spin_some(node);
     rate.sleep();
   }
-  
 
   rclcpp::shutdown();
   return 0;
 }
 
-/*
-Tengo que quitar Patrol y añadir los dos action nuevos.
-GetNextWaypoint: lee de la lista de parametros y lee de la blackboard por que indice va, le suma uno y devuelve el wp de ese indice
-devuelve success siempre
-Move: lee del waypoint y va hacia el, devuelve success siempre
-IsRaceFinished: lee de la lista de parametros, lee de la blackboard por que indicie va, si es el ultimo devuelve success y acabamos
-sino devuelve failure y empezamos de nuevo en GetNextWaypoint con el siguiente waypoint.
-*/
-/*
-Esta hecho con un Sequence, de tal forma que GetNextPoint si devuelve success hace tick a Move
-Move devuelve running entonces Squence le hara tick otra vez hasts que falle o tenga exito, lo normal es tener exito
-De move pasa a si hemos acabado, devulve failure, entonces el sequence hara restart y empezaremos desde GetNextWaypoint de nuevo
-si devuleve success, al ser el ultimo hijo del sequence, devilvera al arbol success y habremos acabado, nunca devuelve running*/
-
+// ros2 run pkg node --ros-args --params-file ruta absoluta
